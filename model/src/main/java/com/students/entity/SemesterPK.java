@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Elena on 5/27/2014.
+ * Created by Elena on 6/18/2014.
  */
 public class SemesterPK implements Serializable {
     private int idSemester;

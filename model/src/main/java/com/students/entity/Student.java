@@ -1,19 +1,21 @@
 package com.students.entity;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Collection;
+import java.util.Date;
 
 /**
- * Created by Elena on 5/27/2014.
+ * Created by Elena on 6/18/2014.
  */
 @Entity
 public class Student {
     private int idStudent;
     private String firstName;
     private String lastName;
-    private String group;
-    private Date date;
+    private String studentGroup;
+    private Date dateEntering;
     private Collection<Teaching> teachingsByIdStudent;
 
     @Id
@@ -47,23 +49,23 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "group")
-    public String getGroup() {
-        return group;
+    @Column(name = "studentGroup")
+    public String getStudentGroup() {
+        return studentGroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setStudentGroup(String studentGroup) {
+        this.studentGroup = studentGroup;
     }
 
     @Basic
-    @Column(name = "date")
-    public Date getDate() {
-        return date;
+    @Column(name = "dateEntering")
+    public Date getDateEntering() {
+        return dateEntering;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateEntering(Date dateEntering) {
+        this.dateEntering = dateEntering;
     }
 
     @Override
@@ -74,10 +76,12 @@ public class Student {
         Student student = (Student) o;
 
         if (idStudent != student.idStudent) return false;
-        if (date != null ? !date.equals(student.date) : student.date != null) return false;
+        if (dateEntering != null ? !dateEntering.equals(student.dateEntering) : student.dateEntering != null)
+            return false;
         if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
-        if (group != null ? !group.equals(student.group) : student.group != null) return false;
         if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
+        if (studentGroup != null ? !studentGroup.equals(student.studentGroup) : student.studentGroup != null)
+            return false;
 
         return true;
     }
@@ -87,11 +91,12 @@ public class Student {
         int result = idStudent;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (studentGroup != null ? studentGroup.hashCode() : 0);
+        result = 31 * result + (dateEntering != null ? dateEntering.hashCode() : 0);
         return result;
     }
 
+    @JsonBackReference
     @OneToMany(mappedBy = "studentByIdStudent")
     public Collection<Teaching> getTeachingsByIdStudent() {
         return teachingsByIdStudent;

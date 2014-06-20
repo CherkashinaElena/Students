@@ -1,18 +1,21 @@
 package com.students.entity;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 
 /**
- * Created by Elena on 5/27/2014.
+ * Created by Elena on 6/18/2014.
  */
 @Entity
 public class Teaching {
     private int idTeaching;
+    private int idStudent;
     private int idSemester;
     private int idSubject;
-    private int idStudent;
-    private Semester semester;
+    private Integer studentMark;
     private Student studentByIdStudent;
+    private Semester semester;
 
     @Id
     @Column(name = "idTeaching")
@@ -25,13 +28,23 @@ public class Teaching {
     }
 
     @Basic
+    @Column(name = "idStudent")
+    public int getIdStudent() {
+        return idStudent;
+    }
+
+    public void setIdStudent(int idStudent) {
+        this.idStudent = idStudent;
+    }
+
+    @Basic
     @Column(name = "idSemester")
     public int getIdSemester() {
         return idSemester;
     }
 
-    public void setIdSemester(int idІemester) {
-        this.idSemester = idІemester;
+    public void setIdSemester(int idSemester) {
+        this.idSemester = idSemester;
     }
 
     @Basic
@@ -45,13 +58,13 @@ public class Teaching {
     }
 
     @Basic
-    @Column(name = "idStudent")
-    public int getIdStudent() {
-        return idStudent;
+    @Column(name = "studentMark")
+    public Integer getStudentMark() {
+        return studentMark;
     }
 
-    public void setIdStudent(int idStudent) {
-        this.idStudent = idStudent;
+    public void setStudentMark(Integer studentMark) {
+        this.studentMark = studentMark;
     }
 
     @Override
@@ -61,10 +74,12 @@ public class Teaching {
 
         Teaching teaching = (Teaching) o;
 
+        if (idSemester != teaching.idSemester) return false;
         if (idStudent != teaching.idStudent) return false;
         if (idSubject != teaching.idSubject) return false;
         if (idTeaching != teaching.idTeaching) return false;
-        if (idSemester != teaching.idSemester) return false;
+        if (studentMark != null ? !studentMark.equals(teaching.studentMark) : teaching.studentMark != null)
+            return false;
 
         return true;
     }
@@ -72,22 +87,14 @@ public class Teaching {
     @Override
     public int hashCode() {
         int result = idTeaching;
+        result = 31 * result + idStudent;
         result = 31 * result + idSemester;
         result = 31 * result + idSubject;
-        result = 31 * result + idStudent;
+        result = 31 * result + (studentMark != null ? studentMark.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "idSemester", referencedColumnName = "idSemester", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "idSubject", referencedColumnName = "idSubject", nullable = false, insertable = false, updatable = false)})
-    public Semester getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Semester semester) {
-        this.semester = semester;
-    }
-
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idStudent", referencedColumnName = "idStudent", nullable = false, insertable = false, updatable = false)
     public Student getStudentByIdStudent() {
@@ -96,5 +103,16 @@ public class Teaching {
 
     public void setStudentByIdStudent(Student studentByIdStudent) {
         this.studentByIdStudent = studentByIdStudent;
+    }
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "idSemester", referencedColumnName = "idSemester", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "idSubject", referencedColumnName = "idSubject", nullable = false, insertable = false, updatable = false)})
+    public Semester getSemester() {
+        return semester;
+    }
+
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
 }

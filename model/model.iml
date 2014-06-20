@@ -5,9 +5,12 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" value="2789ccc5-0b3f-43ee-a111-4a3ece74df0c" />
-          <unit-entry name="sessionFactory" value="dataSource" />
+          <unit-entry name="sessionFactory" value="2789ccc5-0b3f-43ee-a111-4a3ece74df0c" />
         </datasource-map>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="sessionFactory" />
+        </naming-strategy-map>
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/java/hibernate.cfg.xml" />
       </configuration>
     </facet>
@@ -95,6 +98,10 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
   </component>
 </module>
 

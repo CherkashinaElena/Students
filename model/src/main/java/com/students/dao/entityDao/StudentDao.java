@@ -1,5 +1,6 @@
-package com.students.dao;
+package com.students.dao.entityDao;
 
+import com.students.dao.generalDao.SessionDao;
 import com.students.entity.Student;
 import org.springframework.stereotype.Component;
 
@@ -9,14 +10,19 @@ import java.util.List;
  * Created by Elena on 5/27/2014.
  */
 @Component("studentDao")
-public class StudentDao extends SessionDao<Student> {
+public class StudentDao extends SessionDao<Student> implements IStudentDao {
     @Override
-    public void save(Student object) {
-        sessionFactory.getCurrentSession().save(object);
+    public Student save(Student object) {
+        Integer idStudent = (Integer) sessionFactory.getCurrentSession().save(object);
+
+        Student student = get(idStudent);
+
+        return student;
     }
 
     @Override
     public void update(Student object) {
+
         sessionFactory.getCurrentSession().update(object);
     }
 
@@ -27,7 +33,7 @@ public class StudentDao extends SessionDao<Student> {
 
     @Override
     public Student get(Integer id) {
-        return (Student) sessionFactory.getCurrentSession().load(Student.class, id);
+        return (Student) sessionFactory.getCurrentSession().get(Student.class, id);
     }
 
     @Override

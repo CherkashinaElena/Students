@@ -1,17 +1,20 @@
 package com.students.entity;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Elena on 5/27/2014.
+ * Created by Elena on 6/18/2014.
  */
 @Entity
 @IdClass(SemesterPK.class)
 public class Semester {
     private int idSemester;
-    private Integer duration;
     private int idSubject;
+    private Integer duration;
     private Subject subjectByIdSubject;
     private Collection<Teaching> teachings;
 
@@ -25,16 +28,6 @@ public class Semester {
         this.idSemester = idSemester;
     }
 
-    @Basic
-    @Column(name = "duration")
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
     @Id
     @Column(name = "idSubject")
     public int getIdSubject() {
@@ -43,6 +36,16 @@ public class Semester {
 
     public void setIdSubject(int idSubject) {
         this.idSubject = idSubject;
+    }
+
+    @Basic
+    @Column(name = "duration")
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     @Override
@@ -62,11 +65,12 @@ public class Semester {
     @Override
     public int hashCode() {
         int result = idSemester;
-        result = 31 * result + (duration != null ? duration.hashCode() : 0);
         result = 31 * result + idSubject;
+        result = 31 * result + (duration != null ? duration.hashCode() : 0);
         return result;
     }
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idSubject", referencedColumnName = "idSubject", nullable = false, insertable = false, updatable = false)
     public Subject getSubjectByIdSubject() {
@@ -77,6 +81,7 @@ public class Semester {
         this.subjectByIdSubject = subjectByIdSubject;
     }
 
+    @JsonBackReference
     @OneToMany(mappedBy = "semester")
     public Collection<Teaching> getTeachings() {
         return teachings;

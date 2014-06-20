@@ -1,10 +1,12 @@
 package com.students.entity;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Elena on 5/27/2014.
+ * Created by Elena on 6/18/2014.
  */
 @Entity
 public class Subject {
@@ -52,6 +54,7 @@ public class Subject {
         return result;
     }
 
+    @JsonBackReference
     @OneToMany(mappedBy = "subjectByIdSubject")
     public Collection<Semester> getSemestersByIdSubject() {
         return semestersByIdSubject;

@@ -12,7 +12,7 @@
             /WEB-INF/application-config.xml
             classpath:spring-config.xml
             classpath:service-spring-config.xml
-            /WEB-INF/application-security.xml
+            /WEB-INF/spring-security-config.xml
         </param-value>
     </context-param>
 

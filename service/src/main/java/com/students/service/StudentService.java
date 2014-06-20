@@ -14,8 +14,8 @@ import java.util.List;
 public class StudentService extends IService<Student> {
 
     @Override
-    public void save(Student object) {
-        studentDao.save(object);
+    public Student save(Student object) {
+        return studentDao.save(object);
     }
 
     @Override

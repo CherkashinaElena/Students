@@ -6,6 +6,7 @@
 
 
     <context:component-scan base-package="com.students.dao"/>
+    <context:component-scan base-package="com.students.repository"/>
     <context:component-scan base-package="com.students.service"/>
 
     <bean id="exceptionTranslationInterceptor"

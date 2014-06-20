@@ -1,0 +1,98 @@
+.content-wrapper{
+    margin: 100px;
+    padding: 100px;
+}
+
+.header{
+    margin-left: 100px;
+    padding: 50px;
+}
+
+.logout{
+    margin-left: 1100px;
+}
+
+.links_content{
+    margin-top: 50px;
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
+.students_table{
+    margin: 50px 150px;
+}
+
+.button_content_students{
+    margin: 0px 100px;
+    padding: 30px;
+}
+
+.button_content_students .container{
+    width: 1110px; !important;
+}
+
+.btn{
+    margin-top: 10px !important;
+}
+
+.adding_student_information{
+    padding: 20px;
+}
+
+.studentFormStyle{
+    margin-top: 50px;
+}
+
+.info_student_content{
+    margin: 30px 150px 50px;
+}
+
+.info_student_table, .info_subjects_content{
+    margin: 20px;
+}
+
+.select_semestr{
+    margin: 20px;
+    width: 70%;
+}
+
+.average{
+    margin: 20px;
+}
+
+.col-lg-5 > h4{
+    padding: 5px !important;
+}
+
+.col-lg-5 > select{
+    margin: 5px !important;
+}
+
+.btn{
+    margin: 5px !important;
+}
+
+.subject_table > thead > tr > th, .subject_table > tbody > tr > td,
+.students_table > table > thead > tr > th, .students_table > table > tbody > tr > td{
+    padding: 50px 20px !important;
+}
+
+.subject_list{
+    margin: 50px;
+}
+
+.subject_table{
+    margin: 20px;
+}
+
+.subject_buttons{
+    margin-top: 80px;
+}
+
+.info_semester{
+    margin: 50px 150px;
+}
+
+.duration{
+    margin: 180px 0px 0px 180px;
+}

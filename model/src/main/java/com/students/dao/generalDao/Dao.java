@@ -1,4 +1,4 @@
-package com.students.dao;
+package com.students.dao.generalDao;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 @Transactional(Transactional.TxType.REQUIRED)
 public interface Dao<T> {
 
-    void save(T object);
+    T save(T object);
 
     void update(T object);
 

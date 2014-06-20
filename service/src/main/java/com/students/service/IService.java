@@ -1,7 +1,12 @@
 package com.students.service;
 
-import com.students.dao.Dao;
+import com.students.dao.generalDao.Dao;
+import com.students.entity.Semester;
 import com.students.entity.Student;
+import com.students.entity.Subject;
+import com.students.entity.Teaching;
+import com.students.repository.SemesterRepository;
+import com.students.repository.TeachingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -16,7 +21,27 @@ public abstract class IService<T> {
     @Qualifier("studentDao")
     Dao<Student> studentDao;
 
-    public abstract void save(T object);
+    @Autowired
+    @Qualifier("subjectDao")
+    Dao<Subject> subjectDao;
+
+    @Autowired
+    @Qualifier("semesterDao")
+    Dao<Semester> semesterDao;
+
+    @Autowired
+    @Qualifier("teachingDao")
+    Dao<Teaching> teachingDao;
+
+    @Autowired
+    @Qualifier("teachingRepository")
+    TeachingRepository teachingRepository;
+
+    @Autowired
+    @Qualifier("semesterRepository")
+    SemesterRepository semesterRepository;
+
+    public abstract T save(T object);
 
     public abstract void update(T object);
 
